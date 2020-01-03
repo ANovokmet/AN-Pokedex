@@ -1,0 +1,16 @@
+<ng-container *ngIf="(myPokemon$ | async)?.length > 0; else empty">
+		<app-pokemon-info-list [model]="myPokemon$ | async"></app-pokemon-info-list>
+</ng-container>
+
+<ng-template #empty>
+	<div class="empty">
+		<div class="empty-icon">
+			<i class="icon icon-4x icon-bookmark"></i>
+		</div>
+		<p class="empty-title h5">You have no Pokemon</p>
+		<p class="empty-subtitle">Add some Pokemon.</p>
+		<div class="empty-action">
+			<a [routerLink]="['/pokemon-all']" class="btn btn-primary">Find Pokemon</a>
+		</div>
+	</div>
+</ng-template>

@@ -2,6 +2,9 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
 import { Pokemon } from '../core/models/pokemon';
 
+/**
+ * Displays data about a single pokemon.
+ */
 @Component({
     selector: 'app-pokemon-info',
     templateUrl: './pokemon-info.component.html',

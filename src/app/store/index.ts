@@ -10,7 +10,7 @@ export interface State {
 }
 
 export const reducers: ActionReducerMap<State> = {
-    [fromPokemon.pokemonFeatureKey]: fromPokemon.reducer
+    pokemon: fromPokemon.reducer
 };
 
 export const metaReducers: MetaReducer<State>[] = !environment.production ? [] : [];

@@ -6,10 +6,12 @@
 // Import full Spectre source code
 @import "../node_modules/spectre.css/src/spectre";
 
+html {
+	height: 100%;
+}
 
-a.disabled {
-    pointer-events: none;
-    cursor: not-allowed;
+body {
+	overflow-x: initial;
 }
 
 .mb-4 {
@@ -18,4 +20,22 @@ a.disabled {
 
 .shadow {
 	box-shadow: 0 0.25rem 1rem rgba(48,55,66,.15);
+}
+
+.img-pixelated {
+    image-rendering: pixelated;
+}
+
+.flex-column {
+	display: flex;
+	flex-direction: column;
+}
+
+.flex-1 {
+	flex: 1;
+}
+
+.flex-align-items-center {
+	display: flex;
+	align-items: center;
 }

@@ -1,26 +1,47 @@
+@import "_variables";
+
 .section-title {
 	font-weight: bold;
-}
-
-.img-pixelated {
-    image-rendering: pixelated;
-}
-
-.flex-column {
-	display: flex;
-	flex-direction: column;
-}
-
-.flex-1 {
-	flex: 1;
-}
-
-.flex-align-items-center {
-	display: flex;
-	align-items: center;
 }
 
 .btn-chip {
 	height: auto;
 	border: none;
+}
+
+.pokemon-sprite {    
+	min-height: 96px;
+    min-width: 96px;
+}
+
+@media screen and (max-width: $size-xs) {
+	.pokemon-sprite {
+		min-height: 144px;
+	}
+
+	.pokemon-title {
+		text-align: center;
+	}
+
+	.pokemon-summary {
+		order: 1;
+	}
+	
+	.pokemon-avatar {
+		order: 2;
+	}
+}
+
+/* Displays while loading */
+.fake {
+	background: $secondary-color;
+	
+	&.section {
+		background: $secondary-color;
+		min-height: 90px;
+	}
+	
+	&.block {
+		min-height: 180px;
+	}
 }

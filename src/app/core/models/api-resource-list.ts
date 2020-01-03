@@ -9,3 +9,7 @@ export interface ApiResource {
     name: string;
     url: string;
 }
+
+export interface IndexedApiResource extends ApiResource {
+    id: number;
+}

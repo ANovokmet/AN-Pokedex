@@ -4,15 +4,15 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
-import { ScrollingModule } from '@angular/cdk/scrolling';
+import { VirtualScrollerModule } from 'ngx-virtual-scroller';
 
 import { AppRoutingModule } from './app-routing.module';
 import { CoreModule } from './core/core.module';
 import { AppComponent } from './app.component';
-import { PokemonListComponent } from './pokemon-list/pokemon-list.component';
+import { PokemonAllComponent } from './pokemon-all/pokemon-all.component';
 import { PokemonDetailComponent } from './pokemon-detail/pokemon-detail.component';
 import { PokemonInfoComponent } from './pokemon-info/pokemon-info.component';
-import { MyPokemonListComponent } from './my-pokemon-list/my-pokemon-list.component';
+import { PokemonMyComponent } from './pokemon-my/pokemon-my.component';
 import { MyPokemonService } from './my-pokemon.service';
 import { environment } from '../environments/environment';
 import { reducers, metaReducers } from './store';
@@ -21,10 +21,10 @@ import { PokemonInfoListComponent } from './pokemon-info-list/pokemon-info-list.
 @NgModule({
     declarations: [
         AppComponent,
-        PokemonListComponent,
+        PokemonAllComponent,
         PokemonDetailComponent,
         PokemonInfoComponent,
-        MyPokemonListComponent,
+        PokemonMyComponent,
         PokemonInfoListComponent
     ],
     imports: [
@@ -42,7 +42,7 @@ import { PokemonInfoListComponent } from './pokemon-info-list/pokemon-info-list.
             }
         }),
         !environment.production ? StoreDevtoolsModule.instrument() : [],
-        ScrollingModule
+        VirtualScrollerModule
     ],
     providers: [MyPokemonService],
     bootstrap: [AppComponent]

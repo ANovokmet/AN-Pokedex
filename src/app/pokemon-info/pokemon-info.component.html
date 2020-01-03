@@ -1,53 +1,57 @@
-<div *ngIf="model">
+<div *ngIf="model; else loadingTemplate">
 	<div class="columns mb-4">
-		<div class="column col-4 col-xs-6 flex-column">
-			<div class="flex-1">
+		<div class="column col-4 col-sm-6 col-xs-12 flex-column pokemon-avatar">
+			<div class="pokemon-sprite flex-1">
 				<img *ngIf="model.sprites.front_default" class="img-responsive img-fit-cover p-centered img-pixelated"
-					style="height: 100%;" [src]="model?.sprites.front_default" alt="{{model.name}} sprite">
+					style="height: 100%;" [src]="model?.sprites.front_default" alt="{{model.name}} sprite" data-original-img="original.jpg">
 				<div *ngIf="!model.sprites.front_default">no image</div>
 			</div>
-			<div>
-				<button class="btn text-ellipsis" style="width: 100%;" (click)="addedToMyPokemon.next(model)" *ngIf="!isInMyPokemon">
+			<div class="pokemon-actions">
+				<button class="btn text-ellipsis" style="width: 100%;" (click)="addedToMyPokemon.next(model)"
+					*ngIf="!isInMyPokemon">
 					<i class="icon icon-bookmark"></i>
 					Add to My Pokemon
 				</button>
-				<button class="btn btn-primary text-ellipsis" style="width: 100%;" (click)="removedFromMyPokemon.next(model)" *ngIf="isInMyPokemon">
+				<button class="btn btn-primary text-ellipsis" style="width: 100%;"
+					(click)="removedFromMyPokemon.next(model)" *ngIf="isInMyPokemon">
 					<i class="icon icon-delete"></i>
 					Remove from My Pokemon
 				</button>
 			</div>
 		</div>
-		<div class="column">
-			<h2>{{model.name | titlecase}}</h2>
-			<div *ngFor="let item of model.types" class="label label-rounded label-primary mx-1">
-				{{item.type.name | titlecase}}
+		<div class="column pokemon-summary">
+			<div class="pokemon-title">
+				<h2>{{model.name | titlecase}}</h2>
+				<div *ngFor="let item of model.types" class="label label-rounded label-primary mx-1">
+					{{item.type.name | titlecase}}
+				</div>
+				<div class="divider"></div>
 			</div>
-			<div class="divider"></div>
-			<div class="columns">
-				<div class="text-right text-gray column col-6">Order</div>
-				<div class="detail-value column col-6">#{{model.order}}</div>
-			</div>
-			<div class="columns">
-				<div class="text-right text-gray column col-6">Name</div>
-				<div class="detail-value column col-6">{{model.name | titlecase}}</div>
-			</div>
-			<div class="columns">
-				<div class="text-right text-gray column col-6">Height</div>
-				<div class="detail-value column col-6">{{model.height / 10}} m</div>
-			</div>
-			<div class="columns">
-				<div class="text-right text-gray column col-6">Weight</div>
-				<div class="detail-value column col-6">{{model.weight / 10}} kg</div>
+			<div class="pokemon-stats">
+				<div class="columns">
+					<div class="text-right text-gray column col-6">Order</div>
+					<div class="detail-value column col-6">#{{model.order}}</div>
+				</div>
+				<div class="columns">
+					<div class="text-right text-gray column col-6">Name</div>
+					<div class="detail-value column col-6">{{model.name | titlecase}}</div>
+				</div>
+				<div class="columns">
+					<div class="text-right text-gray column col-6">Height</div>
+					<div class="detail-value column col-6">{{model.height / 10}} m</div>
+				</div>
+				<div class="columns">
+					<div class="text-right text-gray column col-6">Weight</div>
+					<div class="detail-value column col-6">{{model.weight / 10}} kg</div>
+				</div>
 			</div>
 		</div>
 	</div>
 
-
-
 	<div class="section mb-4">
-		<h6 class="section-title">
+		<h4 class="section-title">
 			Stats
-		</h6>
+		</h4>
 		<div *ngFor="let item of model.stats" class="columns">
 			<div class="text-right text-gray column col-3 col-xs-5 text-ellipsis">
 				{{item.stat.name | deKebabCase}}
@@ -60,40 +64,47 @@
 		</div>
 	</div>
 
-
 	<div class="section mb-4">
-		<h6 class="section-title">
+		<h4 class="section-title">
 			Abilities
-		</h6>
+		</h4>
 		<div *ngFor="let item of model.abilities" class="label label-rounded mx-1">
 			{{item.ability.name | deKebabCase}}
 		</div>
 	</div>
 
 	<div class="section mb-4">
-		<h6 class="section-title">
+		<h4 class="section-title">
 			Moves
-		</h6>
+		</h4>
 		<div *ngFor="let item of model.moves | slice:0:movesLimit" class="label label-rounded mx-1 mb-1">
 			{{item.move.name | deKebabCase}}
 		</div>
-		<div class="label label-rounded mx-1 mb-1 btn btn-chip" *ngIf="movesLimit < model.moves.length" (click)="onExpandMoves()"><i
-				class="icon icon-more-horiz"></i>
+		<div class="label label-rounded mx-1 mb-1 btn btn-chip" *ngIf="movesLimit < model.moves.length"
+			(click)="onExpandMoves()"><i class="icon icon-more-horiz"></i>
 		</div>
-		<!-- <button class="btn btn-action s-circle btn-sm"><i class="icon icon-more-horiz"></i></button> -->
 	</div>
-	<!-- 
-	<div class="section">
-		<div class="section-title">
-			moves
-		</div>
-		<div class="section-menu">
-			<button *ngFor="let version of versions" (click)="onSelectedVersion(version)">{{version}}</button>
-		</div>
-		<div *ngFor="let item of groupedMovesDict[selectedVersion]">
-			{{item.move.name}} <span
-				*ngFor="let version of item.version_group_details">{{version.level_learned_at}}</span>
-		</div>
-	</div> -->
-
 </div>
+
+<!-- -->
+<ng-template #loadingTemplate>
+	<div class="columns mb-4">
+		<div class="column col-4 col-sm-6 col-xs-12 pokemon-avatar">
+			<div class="block fake">
+			</div>
+		</div>
+		<div class="column pokemon-summary">
+			<div class="block fake">
+			</div>
+		</div>
+	</div>
+
+	<div class="section mb-4 fake">
+	</div>
+
+	<div class="section mb-4 fake">
+	</div>
+
+	<div class="section mb-4 fake">
+	</div>
+</ng-template>

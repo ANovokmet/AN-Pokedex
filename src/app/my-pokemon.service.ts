@@ -8,6 +8,9 @@ import { PokemonService } from './core/api/pokemon.service';
 import { selectMyPokemon } from './store/pokemon/pokemon.selectors';
 import { removeFromMyPokemon, addToMyPokemon } from './store/pokemon/pokemon.actions';
 
+/**
+ * Manages My Pokemon list.
+ */
 @Injectable()
 export class MyPokemonService {
 

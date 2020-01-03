@@ -1,13 +1,13 @@
 <header class="navbar bg-primary p-2">
 	<section class="navbar-section">
-		<a [routerLink]="['/pokemon-list']" class="btn btn-link  text-light">All Pokemon</a>
+		<a [routerLink]="['/pokemon-all']" routerLinkActive="active" class="btn btn-link text-light">All Pokemon</a>
 	</section>
-	<section class="navbar-center text-light">
-		Pokedex
+	<section class="navbar-center text-light xxs-hidden">
+		Pokédex
 	</section>
 	<section class="navbar-section">
-		<a [routerLink]="['/my-pokemon-list']" class="btn btn-link text-light">My Pokemon <ng-container
-				*ngIf="myPokemonService.myPokemon && myPokemonService.myPokemon.length > 0">
+		<a [routerLink]="['/pokemon-my']" routerLinkActive="active" class="btn btn-link text-light">My Pokemon
+			<ng-container *ngIf="myPokemonService.myPokemon && myPokemonService.myPokemon.length > 0">
 				({{myPokemonService.myPokemon.length}})
 			</ng-container>
 		</a>

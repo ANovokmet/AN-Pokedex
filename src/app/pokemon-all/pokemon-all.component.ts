@@ -1,35 +1,36 @@
-import { Component, OnInit } from '@angular/core';
-import { Observable, combineLatest } from 'rxjs';
-import { shareReplay, map, switchMap, take, debounceTime, startWith, tap, filter } from 'rxjs/operators';
-import { ActivatedRoute, Router, ParamMap } from '@angular/router';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Observable, Subscription } from 'rxjs';
+import { debounceTime, tap, filter } from 'rxjs/operators';
 import { FormControl } from '@angular/forms';
+import { Store, select } from '@ngrx/store';
 
 import { PokemonService } from '../core/api/pokemon.service';
 import { ApiResourceList, ApiResource } from '../core/models/api-resource-list';
-import { Store, select } from '@ngrx/store';
 import { State } from '../store';
-import { selectPokemonState, selectSearchValue, selectFilteredPokemon } from '../store/pokemon/pokemon.selectors';
+import { selectSearchValue, selectFilteredPokemon } from '../store/pokemon/pokemon.selectors';
 import { updateSearch, loadPokemon } from '../store/pokemon/pokemon.actions';
 
 const PAGE_LIMIT = 934;
 
+/**
+ * Page displaying all pokemon.
+ */
 @Component({
-    selector: 'app-pokemon-list',
-    templateUrl: './pokemon-list.component.html',
-    styleUrls: ['./pokemon-list.component.scss']
+    selector: 'app-pokemon-all',
+    templateUrl: './pokemon-all.component.html',
+    styleUrls: ['./pokemon-all.component.scss']
 })
-export class PokemonListComponent implements OnInit {
+export class PokemonAllComponent implements OnInit, OnDestroy {
     pokemonResources$: Observable<ApiResourceList>;
     filteredPokemon$: Observable<ApiResource[]>;
     searchControl = new FormControl('');
+    searchValueSubscription: Subscription;
 
     constructor(
         private pokemonService: PokemonService,
         private store$: Store<State>
     ) {
-        // this.pokemonResources$ = pokemonService.getAll().pipe(shareReplay(1));
-
-        this.store$.pipe(select(selectSearchValue)).subscribe(value => {
+        this.searchValueSubscription = this.store$.pipe(select(selectSearchValue)).subscribe(value => {
             this.searchControl.setValue(value, { emitEvent: false });
         });
 
@@ -57,5 +58,9 @@ export class PokemonListComponent implements OnInit {
     }
 
     ngOnInit() {
+    }
+
+    ngOnDestroy() {
+        this.searchValueSubscription.unsubscribe();
     }
 }

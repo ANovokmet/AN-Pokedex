@@ -1,11 +1,18 @@
-<app-pokemon-info [model]="pokemon$ | async" (addedToMyPokemon)="onAddToMyPokemon($event)"
-	(removedFromMyPokemon)="onRemoveFromMyPokemon($event)"
-	[isInMyPokemon]="isInMyPokemon$ | async"></app-pokemon-info>
-<div class="columns mb-4" style="display: flex;justify-content: space-between;">
-	<a [routerLink]="['/pokemon-list']">
-		to list
-	</a>
-	<a [routerLink]="['/my-pokemon-list']">
-		to my list
-	</a>
-</div>
+<ng-container *ngIf="!error; else errorTemplate">
+	<app-pokemon-info [model]="pokemon$ | async" (addedToMyPokemon)="onAddToMyPokemon($event)"
+		(removedFromMyPokemon)="onRemoveFromMyPokemon($event)" [isInMyPokemon]="isInMyPokemon$ | async" class="mb-4">
+	</app-pokemon-info>
+</ng-container>
+
+<ng-template #errorTemplate>
+	<div class="empty">
+		<div class="empty-icon">
+			<i class="icon icon-4x icon-cross"></i>
+		</div>
+		<p class="empty-title h5">Error getting pokemon</p>
+		<p class="empty-subtitle">Find another pokemon.</p>
+		<div class="empty-action">
+			<a [routerLink]="['/pokemon-all']" class="btn btn-primary">Find Pokemon</a>
+		</div>
+	</div>
+</ng-template>
