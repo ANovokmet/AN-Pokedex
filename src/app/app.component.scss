@@ -1,0 +1,27 @@
+@import "_variables";
+
+.content {
+	margin-top: 1.5rem;
+    -ms-flex: 1 1 auto;
+    flex: 1 1 auto;
+    padding: 0 4rem;
+    width: calc(100vw - 12rem);
+}
+
+@media screen and (max-width: $size-lg) {
+	.content {
+		min-width: auto;
+		padding: 0 1.5rem;
+		width: 100%;
+	}
+}
+
+@media screen and (max-width: $size-xs) {
+	.content {
+		padding: 0 0.4rem;
+	}
+}
+
+.navbar {
+	
+}

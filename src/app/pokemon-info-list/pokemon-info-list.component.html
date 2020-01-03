@@ -1,0 +1,17 @@
+<cdk-virtual-scroll-viewport *ngIf="model" itemSize="50" style="height: 300px;">
+	<div class="tile tile-centered mb-2" *cdkVirtualFor="let resource of model; let i = index;">
+		<div class="tile-icon">
+			<div class="tile-icon-inner">
+				{{i + 1}}
+			</div>
+		</div>
+		<div class="tile-content">
+			<p class="tile-title">{{resource.name | titlecase}}</p>
+		</div>
+		<div class="tile-action">
+			<a [routerLink]="['/pokemon', resource.name]" class="btn mr-2">
+				View
+			</a>
+		</div>
+	</div>
+</cdk-virtual-scroll-viewport>

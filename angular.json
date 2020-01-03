@@ -27,8 +27,14 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.scss"
+			  "src/styles.scss",
+			  "node_modules/spectre.css/dist/spectre-icons.min.css"
             ],
+			"stylePreprocessorOptions": {
+				"includePaths": [
+					"src/assets/styles"
+				]
+			},
             "scripts": []
           },
           "configurations": {

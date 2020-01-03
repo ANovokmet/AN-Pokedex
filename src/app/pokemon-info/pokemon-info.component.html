@@ -1,0 +1,99 @@
+<div *ngIf="model">
+	<div class="columns mb-4">
+		<div class="column col-4 col-xs-6 flex-column">
+			<div class="flex-1">
+				<img *ngIf="model.sprites.front_default" class="img-responsive img-fit-cover p-centered img-pixelated"
+					style="height: 100%;" [src]="model?.sprites.front_default" alt="{{model.name}} sprite">
+				<div *ngIf="!model.sprites.front_default">no image</div>
+			</div>
+			<div>
+				<button class="btn text-ellipsis" style="width: 100%;" (click)="addedToMyPokemon.next(model)" *ngIf="!isInMyPokemon">
+					<i class="icon icon-bookmark"></i>
+					Add to My Pokemon
+				</button>
+				<button class="btn btn-primary text-ellipsis" style="width: 100%;" (click)="removedFromMyPokemon.next(model)" *ngIf="isInMyPokemon">
+					<i class="icon icon-delete"></i>
+					Remove from My Pokemon
+				</button>
+			</div>
+		</div>
+		<div class="column">
+			<h2>{{model.name | titlecase}}</h2>
+			<div *ngFor="let item of model.types" class="label label-rounded label-primary mx-1">
+				{{item.type.name | titlecase}}
+			</div>
+			<div class="divider"></div>
+			<div class="columns">
+				<div class="text-right text-gray column col-6">Order</div>
+				<div class="detail-value column col-6">#{{model.order}}</div>
+			</div>
+			<div class="columns">
+				<div class="text-right text-gray column col-6">Name</div>
+				<div class="detail-value column col-6">{{model.name | titlecase}}</div>
+			</div>
+			<div class="columns">
+				<div class="text-right text-gray column col-6">Height</div>
+				<div class="detail-value column col-6">{{model.height / 10}} m</div>
+			</div>
+			<div class="columns">
+				<div class="text-right text-gray column col-6">Weight</div>
+				<div class="detail-value column col-6">{{model.weight / 10}} kg</div>
+			</div>
+		</div>
+	</div>
+
+
+
+	<div class="section mb-4">
+		<h6 class="section-title">
+			Stats
+		</h6>
+		<div *ngFor="let item of model.stats" class="columns">
+			<div class="text-right text-gray column col-3 col-xs-5 text-ellipsis">
+				{{item.stat.name | deKebabCase}}
+			</div>
+			<div class="column col-9 col-xs-7 flex-align-items-center">
+				<div class="bar">
+					<div class="bar-item" [ngStyle]="{'width': item.base_stat + '%'}">{{item.base_stat}}</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+	<div class="section mb-4">
+		<h6 class="section-title">
+			Abilities
+		</h6>
+		<div *ngFor="let item of model.abilities" class="label label-rounded mx-1">
+			{{item.ability.name | deKebabCase}}
+		</div>
+	</div>
+
+	<div class="section mb-4">
+		<h6 class="section-title">
+			Moves
+		</h6>
+		<div *ngFor="let item of model.moves | slice:0:movesLimit" class="label label-rounded mx-1 mb-1">
+			{{item.move.name | deKebabCase}}
+		</div>
+		<div class="label label-rounded mx-1 mb-1 btn btn-chip" *ngIf="movesLimit < model.moves.length" (click)="onExpandMoves()"><i
+				class="icon icon-more-horiz"></i>
+		</div>
+		<!-- <button class="btn btn-action s-circle btn-sm"><i class="icon icon-more-horiz"></i></button> -->
+	</div>
+	<!-- 
+	<div class="section">
+		<div class="section-title">
+			moves
+		</div>
+		<div class="section-menu">
+			<button *ngFor="let version of versions" (click)="onSelectedVersion(version)">{{version}}</button>
+		</div>
+		<div *ngFor="let item of groupedMovesDict[selectedVersion]">
+			{{item.move.name}} <span
+				*ngFor="let version of item.version_group_details">{{version.level_learned_at}}</span>
+		</div>
+	</div> -->
+
+</div>

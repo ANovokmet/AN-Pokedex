@@ -1,0 +1,11 @@
+<app-pokemon-info [model]="pokemon$ | async" (addedToMyPokemon)="onAddToMyPokemon($event)"
+	(removedFromMyPokemon)="onRemoveFromMyPokemon($event)"
+	[isInMyPokemon]="isInMyPokemon$ | async"></app-pokemon-info>
+<div class="columns mb-4" style="display: flex;justify-content: space-between;">
+	<a [routerLink]="['/pokemon-list']">
+		to list
+	</a>
+	<a [routerLink]="['/my-pokemon-list']">
+		to my list
+	</a>
+</div>

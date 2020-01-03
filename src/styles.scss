@@ -1,1 +1,21 @@
-/* You can add global styles to this file, and also import other style files */
+
+// $primary-color: #2e5bec;
+// $dark-color: #3e396b;
+@import "_variables";
+
+// Import full Spectre source code
+@import "../node_modules/spectre.css/src/spectre";
+
+
+a.disabled {
+    pointer-events: none;
+    cursor: not-allowed;
+}
+
+.mb-4 {
+	margin-bottom: 0.8rem !important;
+}
+
+.shadow {
+	box-shadow: 0 0.25rem 1rem rgba(48,55,66,.15);
+}

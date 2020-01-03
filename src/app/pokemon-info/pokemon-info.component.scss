@@ -1,0 +1,26 @@
+.section-title {
+	font-weight: bold;
+}
+
+.img-pixelated {
+    image-rendering: pixelated;
+}
+
+.flex-column {
+	display: flex;
+	flex-direction: column;
+}
+
+.flex-1 {
+	flex: 1;
+}
+
+.flex-align-items-center {
+	display: flex;
+	align-items: center;
+}
+
+.btn-chip {
+	height: auto;
+	border: none;
+}

@@ -1,0 +1,5 @@
+<div class="has-icon-left mb-4">
+	<input type="text" class="form-input" placeholder="Search" [formControl]="searchControl">
+	<i class="form-icon icon icon-search"></i>
+</div>
+<app-pokemon-info-list [model]="filteredPokemon$ | async"></app-pokemon-info-list>
