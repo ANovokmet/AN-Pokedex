@@ -1,7 +1,7 @@
 # AnPokedex
 
-This is my solution to the Infinum Javascript Task - "Pokémon Encyclopedia".
-This project was built using Angular.
+This is my solution to the Javascript Task - "Pokémon Encyclopedia".
+This project was built using Angular, using `@angular/cli` 7.0.4.
 
 ## Run
 
